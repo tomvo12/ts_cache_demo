@@ -6,7 +6,7 @@ export namespace Cache {
     let cache: { [key: string]: any } = {};
 
     public static memoize<T>(func: () => Promise<T>, resolver?: () => string, ttl?: number): Promise<T> {
-        const key = keyPrefix + (resolver && resolver() || "");
+        const key = keyPrefix + (resolver && resolver() || arguments[0]);
         
         if (cache.hasOwnProperty(key)) {
             console.log("cache hit for key: " + key);
